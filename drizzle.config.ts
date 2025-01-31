@@ -1,12 +1,12 @@
 import { defineConfig } from "drizzle-kit";
-import * as dotenv from "dotenv";
+import { config } from "dotenv";
 
-dotenv.config({
+config({
   path: "./.env.local",
 });
 
-if (typeof process.env.XATA_DATABASE_URL !== "string") {
-  throw new Error("Please set your XATA_DATABASE_URL");
+if (typeof process.env.DATABASE_URL !== "string") {
+  throw new Error("Please set your DATABASE_URL");
 }
 
 export default defineConfig({
@@ -14,6 +14,6 @@ export default defineConfig({
   schema: "./src/db/schema.ts",
   out: "./src/db/migrations",
   dbCredentials: {
-    url: process.env.XATA_DATABASE_URL,
+    url: process.env.DATABASE_URL,
   },
 });

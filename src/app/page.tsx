@@ -21,7 +21,7 @@ export default function LuxuryResidences() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
-      <nav className="sticky top-0 bg-background/80 backdrop-blur-sm z-50">
+      {/* <nav className="sticky top-0 bg-background/80 backdrop-blur-sm z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">
             LUX<span className="text-primary">RESIDENCES</span>
@@ -32,16 +32,16 @@ export default function LuxuryResidences() {
             <Button variant="ghost">Contact</Button>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-transparent" />
-        <img
+        {/* <img
           src="/luxury-lobby.jpg"
           alt="Luxury Lobby"
           className="absolute inset-0 w-full h-full object-cover -z-10"
-        />
+        /> */}
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -112,11 +112,11 @@ export default function LuxuryResidences() {
           <h2 className="text-4xl font-bold text-center mb-16">
             Resident Experiences
           </h2>
-          {/* <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <AnimatedTestimonials key={index} testimonials={testimonials} />
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
 
