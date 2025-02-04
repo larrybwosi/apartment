@@ -63,7 +63,7 @@ const SecurityCheckIn: React.FC = () => {
         }
 
         // Invalidate appointment if necessary
-        if (checkoutDialog.visitor.type !== "guest") {
+        if (checkoutDialog.visitor.type !== "GUEST") {
           await invalidateAppointment(checkoutDialog.visitor.id);
         }
 
@@ -100,7 +100,7 @@ const SecurityCheckIn: React.FC = () => {
               <TabsTrigger value="active-visitors">Active Visitors</TabsTrigger>
             </TabsList>
             <TabsContent value="check-in">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="max-w-5xl">
                 <div>
                   <CheckInForm onCheckIn={handleCheckIn} />
                   {showSuccess && (

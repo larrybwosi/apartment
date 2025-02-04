@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,11 +15,293 @@ model User {
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+  apartment     Apartment? @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  apartmentId   Int?
+  serviceRequests ServiceRequest[]
+  repairRequests  RepairRequest[]
+  type      UserType @default(RESIDENT)
+
   sessions      Session[]
   accounts      Account[]
 
   @@map("user")
 }
+
+enum UserType {
+  ADMIN
+  RESIDENT
+  VISITOR
+  GUEST
+}
+
+model Apartment {
+  id                  Int                   @id @default(autoincrement())
+  title               String
+  slug                String                @unique
+  images              String[]
+  floorPlanImages     String[]
+  price               Int
+  availableDate       DateTime
+  amenities           String[]
+  description         String?               @db.Text
+  virtualTourUrl      String?
+  category            String?
+  featured            Boolean               @default(false)
+  parkingSpaces       Int?
+  petsAllowed         Boolean?
+  petPolicy           String?               @db.Text
+  securityDeposit     Int?
+  maintenanceFee      Int?
+  courtId             Int?
+  court               Court?                @relation(fields: [courtId], references: [id])
+  apartmentNumber     String?   @unique
+  status              ApartmentStatus       @default(AVAILABLE)                
+  lastInspectionDate  DateTime?
+  energyRating        String?
+  bookings            Booking[]
+  cleaningJobs        CleaningJob[]
+  maintenanceRequests MaintenanceRequest[]
+  reviews             Review[]              @relation("ApartmentReviews")
+  visitors            Visitor[]
+  users               User[]
+  serviceRequests     ServiceRequest[]
+  repairRequests  RepairRequest[]
+  visitorLogs     VisitorLog[]
+}
+
+
+model Visitor {
+  id              String      @id @default(uuid())
+  firstName       String
+  lastName        String
+  idType          IdType
+  idNumber        String
+  email           String
+  phone           String
+  checkInTime     DateTime
+  checkOutTime    DateTime?
+  type            VisitorType
+  apartment       Apartment?  @relation(fields: [apartmentNumber], references: [apartmentNumber])
+  apartmentNumber String?
+  appointment     Appointment? @relation(fields: [appointmentId], references: [id])
+  appointmentId   String?
+  luggage         Luggage[]
+  visitorLogs     VisitorLog[]
+}
+
+model Luggage {
+  id          String   @id @default(uuid())
+  description String
+  checkedOut  Boolean  @default(false)
+  visitor     Visitor  @relation(fields: [visitorId], references: [id])
+  visitorId   String
+}
+
+
+model Appointment {
+  id              String     @id @default(uuid())
+  visitorName     String
+  appointmentTime DateTime
+  duration        String
+  type            VisitorType
+  description     String
+  status          AppointmentStatus @default(ACTIVE)
+  visitors        Visitor[]
+}
+
+model Booking {
+  id                 Int           @id @default(autoincrement())
+  apartmentId        Int
+  apartment          Apartment     @relation(fields: [apartmentId], references: [id])
+  startDate          DateTime
+  endDate            DateTime
+  paymentType        PaymentType   @default(rent)
+  isRecurring        Boolean       @default(false)
+  status             BookingStatus @default(PENDING)
+  confirmationCode   String?       @db.VarChar(6)
+  mpesaReceiptNumber String?       @unique
+  phoneNumber        String        @db.VarChar(12) // 2547XXXXXXXX
+  totalAmount        Int
+  checkoutId         String?       @unique
+  nextPaymentDate    DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  payments           Payment[]
+
+  @@index([checkoutId])
+  @@index([status])
+  @@map("bookings")
+}
+
+model Payment {
+  id            Int           @id @default(autoincrement())
+  amount        Int
+  currency      String        @default("KES")
+  status        PaymentStatus @default(PENDING)
+  type          PaymentType
+  method        PaymentMethod @default(mpesa)
+  checkoutId    String?       @unique
+  mpesaReceipt  String?       @unique
+  description   String?
+  phoneNumber   String        @db.VarChar(12)
+  bookingId     Int
+  booking       Booking       @relation(fields: [bookingId], references: [id])
+  transactionId String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([checkoutId])
+  @@index([status])
+  @@index([transactionId])
+  @@map("payments")
+}
+
+model CleaningJob {
+  id               Int       @id @default(autoincrement())
+  apartmentId      Int
+  apartment        Apartment @relation(fields: [apartmentId], references: [id])
+  requestedById    String?
+  assignedToId     String?
+  status           String    @default("requested")
+  tasks            String[]
+  scheduledDate    DateTime?
+  completedDate    DateTime?
+  duration         Int? // in minutes
+  notes            String?   @db.Text
+  rating           Int?
+  review           String?   @db.Text
+  price            Int?
+  paymentStatus    String?
+  serviceType      String? // regular, deep cleaning, move-in/out
+  cleaningProducts Boolean   @default(false)
+  priority         String    @default("normal")
+  photos           String[] // Before and after photos
+}
+
+model CleaningService {
+  id              Int      @id @default(autoincrement())
+  name            String?
+  description     String?  @db.Text
+  price           Int?
+  image           String?
+  duration        Int? // Expected duration in minutes
+  includedTasks   String[]
+  additionalTasks String[]
+  availability    Json? // Working hours, days
+  requirements    String[]
+  supplies        String[]
+  rating          Float?
+  active          Boolean  @default(true)
+}
+
+model Court {
+  id                 Int         @id @default(autoincrement())
+  name               String
+  description        String?     @db.Text
+  image              String?
+  images             String[]
+  address            String?
+  totalFloors        Int?
+  totalApartments    Int?
+  amenities          String[]
+  maintenanceContact String?
+  securityContact    String?
+  parkingCapacity    Int?
+  buildingRules      String?     @db.Text
+  apartments         Apartment[]
+  emergencyExits     Int?
+  yearBuilt          Int?
+  lastRenovated      DateTime?
+  accessControl      Boolean     @default(false)
+}
+
+model MaintenanceRequest {
+  id            Int       @id @default(autoincrement())
+  userId        String
+  apartmentId   Int
+  apartment     Apartment @relation(fields: [apartmentId], references: [id])
+  title         String
+  description   String    @db.Text
+  category      String // plumbing, electrical, etc.
+  images        String[]
+  scheduledDate DateTime?
+  completedDate DateTime?
+  cost          Int?
+  notes         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  status        ServiceStatus   @default(PENDING)
+  priority      ServicePriority @default(MEDIUM)
+  comments      Json?
+  attachments   String[]
+}
+
+model Review {
+  id          Int       @id @default(autoincrement())
+  userId      String
+  apartmentId Int
+  apartment   Apartment @relation("ApartmentReviews", fields: [apartmentId], references: [id])
+  rating      Int
+  review      String    @db.Text
+  images      String[]
+  response    String?   @db.Text
+  status      String    @default("published")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum ApartmentStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+}
+
+enum IdType {
+  DRIVERS_LICENSE
+  PASSPORT
+  STATE_ID
+  MILITARY_ID
+}
+
+enum VisitorType {
+  GUEST
+  MAINTENANCE
+  DELIVERY
+  TOUR
+}
+
+enum AppointmentStatus {
+  ACTIVE
+  COMPLETED
+  EXPIRED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  CANCELLED
+}
+
+enum PaymentType {
+  rent
+  deposit
+  fee
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  PROCESSING
+}
+
+enum PaymentMethod {
+  mpesa
+  card
+  bank
+}
+
 
 model Session {
   id        String   @id
@@ -65,4 +346,73 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+// Updated Prisma schema additions (add to your existing schema):
+
+enum ServiceStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ServicePriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum RepairType {
+  PLUMBING
+  ELECTRICAL
+  GENERAL
+}
+
+model ServiceRequest {
+  id           String              @id @default(uuid())
+  title        String
+  description  String
+  status       ServiceStatus       @default(PENDING)
+  priority     ServicePriority     @default(MEDIUM)
+  apartment    Apartment           @relation(fields: [apartmentId], references: [id])
+  apartmentId  Int
+  user         User?               @relation(fields: [userId], references: [id])
+  userId       String?
+  attachments  String[]
+  comments     Json[]              // Array of ServiceRequestComment objects
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@map("service_requests")
+}
+
+model RepairRequest {
+  id           String              @id @default(uuid())
+  repairType   RepairType
+  description  String
+  status       ServiceStatus       @default(PENDING)
+  priority     ServicePriority     @default(MEDIUM)
+  apartment    Apartment           @relation(fields: [apartmentId], references: [id])
+  apartmentId  Int
+  user         User?               @relation(fields: [userId], references: [id])
+  userId       String?
+  scheduledAt  DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  @@map("repair_requests") 
+}
+
+model VisitorLog {
+  id           String              @id @default(uuid())
+  visitor      Visitor             @relation(fields: [visitorId], references: [id])
+  visitorId    String
+  apartment    Apartment           @relation(fields: [apartmentId], references: [id])
+  apartmentId  Int
+  checkIn      DateTime            @default(now())
+  checkOut     DateTime?
+  status       ServiceStatus       @default(PENDING)
+
+  @@map("visitor_logs")
 }
