@@ -35,7 +35,7 @@ const itemVariants = {
 export function AboutSection() {
   return (
     <section
-      className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/10"
+      className="py-16 md:py-24 bg-linear-to-b from-background to-muted/10"
       id="about"
     >
       <div className="container mx-auto px-4">
@@ -48,7 +48,7 @@ export function AboutSection() {
         >
           {/* Heading Section */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-foreground">
               Redefining Urban Living
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl font-medium">
@@ -91,12 +91,12 @@ export function AboutSection() {
                 whileHover="hover"
                 whileTap="tap"
               >
-                <Card className="p-8 rounded-xl bg-background border border-muted/50 shadow-sm hover:shadow-lg transition-all">
+                <Card className="p-8 rounded-xl bg-background border border-muted/50 shadow-xs hover:shadow-lg transition-all">
                   <div className="flex flex-col items-center">
                     <div className="mb-6 p-4 bg-primary/10 rounded-full">
                       <stat.icon className="w-8 h-8 text-primary" />
                     </div>
-                    <div className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground">
+                    <div className="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-linear-to-r from-primary to-foreground">
                       {stat.value}
                     </div>
                     <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
@@ -117,7 +117,7 @@ export function AboutSection() {
           >
             <Button
               size="lg"
-              className="rounded-full px-8 py-6 text-lg font-semibold space-x-3 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all shadow-lg hover:shadow-xl"
+              className="rounded-full px-8 py-6 text-lg font-semibold space-x-3 bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all shadow-lg hover:shadow-xl"
             >
               <Download className="w-5 h-5" />
               <span>Download Brochure</span>

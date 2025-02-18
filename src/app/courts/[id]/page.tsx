@@ -124,7 +124,7 @@ export default async function CourtPage({ params }: { params: Params }) {
           </div>
 
           {/* Right Column - Management Info */}
-          <div className="rounded-lg border bg-card p-6 shadow-xs">
+          <div className="rounded-lg border bg-card p-6 shadow-2xs">
             <h3 className="mb-4 text-2xl font-bold">Management</h3>
             <div className="space-y-4">
               <div>

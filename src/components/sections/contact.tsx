@@ -92,7 +92,7 @@ export function ContactSection() {
 
   return (
     <section
-      className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/10"
+      className="py-16 md:py-24 bg-linear-to-b from-background to-muted/10"
       id="contact"
     >
       <div className="container mx-auto px-4">
@@ -104,7 +104,7 @@ export function ContactSection() {
           className="max-w-6xl mx-auto"
         >
           <MotionDiv variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-primary to-foreground">
               Get In Touch
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl">
@@ -269,7 +269,7 @@ export function ContactSection() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full h-12 text-base bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary rounded-lg transition-all"
+                      className="w-full h-12 text-base bg-linear-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary rounded-lg transition-all"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

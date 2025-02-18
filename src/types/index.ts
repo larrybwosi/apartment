@@ -123,3 +123,49 @@ export interface Attraction {
   image?: SanityImageAssetDocument;
   description?: string;
 }
+
+export interface Staff {
+  _id: string;
+  _type: "staff";
+  name: string;
+  role: string;
+  email: string;
+  phone: string;
+  image: SanityImageAssetDocument;
+}
+
+export type BookingPlatform = "Booking.com" | "Airbnb.com" | "Agoda.com" | "Hotels.com"
+
+export interface Booking {
+  id: string
+  guestName: string
+  roomNumber: string
+  checkIn: Date
+  checkOut: Date
+  platform: BookingPlatform
+  status: "checked-in" | "checked-out" | "upcoming"
+  avatar?: string
+}
+
+export interface Room {
+  id: string
+  number: string
+  type: string
+  beds: number
+  status: "available" | "occupied" | "not-ready"
+  currentBooking?: Booking
+}
+
+export interface DailyOccupancy {
+  date: string
+  available: number
+  occupied: number
+  notReady: number
+}
+
+export interface RevenueByPlatform {
+  platform: BookingPlatform
+  amount: number
+  percentage: number
+}
+

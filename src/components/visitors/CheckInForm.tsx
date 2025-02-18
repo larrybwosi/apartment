@@ -344,7 +344,7 @@ export const CheckInForm: React.FC<CheckInFormProps> = ({ onCheckIn }) => {
                     </p>
                   )}
                   {residentSuggestions.length > 0 && (
-                    <ul className="mt-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm">
+                    <ul className="mt-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-xs">
                       {residentSuggestions.map((resident, index) => (
                         <li
                           key={index}

@@ -76,7 +76,7 @@ const SecurityCheckIn: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 dark:from-gray-900 dark:to-gray-800 p-8">
+    <div className="min-h-screen bg-linear-to-b from-blue-100 to-blue-200 dark:from-gray-900 dark:to-gray-800 p-8">
       <Card className="max-w-7xl mx-auto bg-white dark:bg-gray-800 shadow-xl">
         <CardHeader className="space-y-1 bg-blue-500 text-white dark:bg-blue-800 rounded-t-lg">
           <div className="flex items-center justify-between">
