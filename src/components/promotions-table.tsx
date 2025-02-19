@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FileDown, Filter, MoreVertical, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { promotions } from "@/lib/promotions-data"
+import Pagination from "./pagination"
 
 export function PromotionsTable() {
   const [activeTab, setActiveTab] = useState("active")
@@ -139,29 +140,7 @@ export function PromotionsTable() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between py-4">
-        <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-          Previous
-        </Button>
-        <div className="flex items-center gap-2">
-          {[1, 2, "...", 12, 13, 14].map((page, i) => (
-            <Button
-              key={i}
-              variant="outline"
-              size="icon"
-              className={cn(
-                "w-8 h-8",
-                page === 1 ? "bg-emerald-600 text-white hover:bg-emerald-700" : "bg-white hover:bg-gray-50",
-              )}
-            >
-              {page}
-            </Button>
-          ))}
-        </div>
-        <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-          Next
-        </Button>
-      </div>
+      <Pagination totalPages={15}/>
     </div>
   )
 }

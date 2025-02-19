@@ -2,7 +2,7 @@ export const staff = [
   {
     id: "#80123098",
     name: "Anderson Dark",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/39866/entrepreneur-startup-start-up-man-39866.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "General Manager",
     hireDate: "24 July 2024",
     agreement: "2 Years",
@@ -13,7 +13,7 @@ export const staff = [
   {
     id: "#80123066",
     name: "White Elefant",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/845457/pexels-photo-845457.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Room Cleaner",
     hireDate: "22 July 2024",
     agreement: "4 Years",
@@ -24,7 +24,7 @@ export const staff = [
   {
     id: "#80123056",
     name: "Mark Ganson",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Front Desk",
     hireDate: "21 March 2022",
     agreement: "6 Years",
@@ -35,7 +35,7 @@ export const staff = [
   {
     id: "#80123041",
     name: "Sugar Soil",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/8945838/pexels-photo-8945838.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Designer",
     hireDate: "20 July 2024",
     agreement: "2 Month",
@@ -46,7 +46,7 @@ export const staff = [
   {
     id: "#80123040",
     name: "Criss Brak",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/3775592/pexels-photo-3775592.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Marketing Manager",
     hireDate: "17 July 2024",
     agreement: "9 Month",
@@ -57,7 +57,7 @@ export const staff = [
   {
     id: "#80123030",
     name: "Lionel Messi",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/3184407/pexels-photo-3184407.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Cleaner Staff",
     hireDate: "16 July 2024",
     agreement: "12 Month",
@@ -68,7 +68,7 @@ export const staff = [
   {
     id: "#80123028",
     name: "Ronaldo Praso",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/1852266/pexels-photo-1852266.jpeg?auto=compress&cs=tinysrgb&w=100",
     position: "Room Cleaner",
     hireDate: "15 July 2024",
     agreement: "2 Years",

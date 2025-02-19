@@ -40,8 +40,8 @@ export function OccupancyChart() {
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="available" fill="#4ade80" stackId="stack" />
-              <Bar dataKey="occupied" fill="#f87171" stackId="stack" />
+              <Bar dataKey="available" fill="oklch(0.609 0.126 221.723)" stackId="stack" className="bg-rose-500" />
+              <Bar dataKey="occupied" fill="oklch(0.645 0.246 16.439)" stackId="stack" />
               <Bar dataKey="notReady" fill="#fbbf24" stackId="stack" />
             </BarChart>
           </ResponsiveContainer>

@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { FileDown, Filter, MoreVertical, Search } from "lucide-react"
 import { guests } from "@/lib/data"
+import Pagination from "./pagination"
 
 export function GuestList() {
   const [selectedStatus, setSelectedStatus] = useState<string>("all")
@@ -208,29 +209,8 @@ export function GuestList() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between py-4">
-        <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-          Previous
-        </Button>
-        <div className="flex items-center gap-2">
-          {[1, 2, 3, "...", 12].map((page, i) => (
-            <Button
-              key={i}
-              variant="outline"
-              size="icon"
-              className={cn(
-                "w-8 h-8",
-                page === 1 ? "bg-emerald-600 text-white hover:bg-emerald-700" : "bg-white hover:bg-gray-50",
-              )}
-            >
-              {page}
-            </Button>
-          ))}
-        </div>
-        <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-          Next
-        </Button>
-      </div>
+      
+      <Pagination totalPages={15}/>
     </div>
   )
 }

@@ -1,8 +1,10 @@
+import { guests } from "./data";
+
 export const reviews = [
   {
     id: 1,
     name: "Raiders Kae",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[0].avatar,
     totalSpent: 2967.0,
     date: "20/12/2024",
     rating: 4.9,
@@ -12,7 +14,7 @@ export const reviews = [
   {
     id: 2,
     name: "Jassy Mac",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[1].avatar,
     totalSpent: 2239.0,
     date: "19/12/2024",
     rating: 4.4,
@@ -22,7 +24,7 @@ export const reviews = [
   {
     id: 3,
     name: "Macculam Brad",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[2].avatar,
     totalSpent: 3766.0,
     date: "18/12/2024",
     rating: 4.4,
@@ -32,7 +34,7 @@ export const reviews = [
   {
     id: 4,
     name: "Jhoney Cark",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[3].avatar,
     totalSpent: 5644.0,
     date: "17/12/2024",
     rating: 4.4,
@@ -42,7 +44,7 @@ export const reviews = [
   {
     id: 5,
     name: "Jhon Brak",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[4].avatar,
     totalSpent: 5443.0,
     date: "16/12/2024",
     rating: 4.1,
@@ -52,7 +54,7 @@ export const reviews = [
   {
     id: 6,
     name: "Rod Atone",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[0].avatar,
     totalSpent: 5799.0,
     date: "15/12/2024",
     rating: 3.9,
@@ -62,7 +64,7 @@ export const reviews = [
   {
     id: 7,
     name: "Sade Repideo",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: guests[2].avatar,
     totalSpent: 527.0,
     date: "13/12/2024",
     rating: 3.9,

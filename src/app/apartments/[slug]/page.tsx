@@ -1,8 +1,7 @@
-import { getApartment, getSimilarApartments } from '@/actions/apartments';
+import { getApartment, getSimilarApartments } from '@/app/actions/apartments';
 import { ApartmentDetails } from '@/components/apartment-details'
 import { SimilarApartments } from '@/components/similar-apartments'
 import { urlFor } from '@/sanity/lib/image';
-import { sanityFetch } from '@/sanity/lib/live';
 import { Metadata } from 'next';
 
 type Params = Promise<{ slug: string }>;
@@ -12,45 +11,76 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
  
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const slug = (await params).slug;
 
-  async function getApartment(slug: string){
-    'use cache'
-    const res = await sanityFetch({
-      query: `*[_type == "apartment" && slug.current == $slug][0] {
-      title,
-      slug,
-      description,
-      mainImage,
-    }`,
-      params: { slug },
-    });
-    return res.data;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // Fetch the apartment details using the slug
+  const slug = (await params).slug;
+  const apartment = await getApartment(slug);
+
+  if (!apartment) {
+    return {
+      title: 'Apartment Not Found',
+      description: 'The requested apartment could not be found.',
+    };
   }
 
-  const apartment = await getApartment(slug);
+  // Construct the metadata dynamically
   return {
-    title: "Cheap City | " + apartment.title,
+    title: `${apartment.title} | ${apartment.location}`,
     description: apartment.description,
-    twitter: {
-      card: "summary_large_image",
-      title: "Cheap City | " + apartment.title,
+    openGraph: {
+      title: `${apartment.title} | ${apartment.location}`,
       description: apartment.description,
       images: [
         {
-          url: urlFor(apartment.mainImage).width(800).height(600).url(),
-          width: 800,
-          height: 600,
+          url: urlFor(apartment.mainImage).width(800).height(600).url(), // Use the main image for the social preview
+          alt: apartment.title,
         },
       ],
+      url: `https://www.cheapcity.vercel.app/apartments/${apartment.slug.current}`, // Dynamic URL for the apartment
+      type: 'website',
     },
-    keywords: [apartment.title, apartment.description, apartment.slug, "cheap", 'apartment'],
+    twitter: {
+      card: 'summary_large_image',
+      title: `${apartment.title} | ${apartment.location}`,
+      description: apartment.description,
+      images: [apartment.mainImage], // Use the main image for Twitter preview
+    },
+    other: {
+      // Schema.org structured data for the apartment
+      schemaOrg: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Apartment",
+        name: apartment.title,
+        description: apartment.description,
+        image: apartment.mainImage,
+        url: `https://www.cheapcity.vercel.app/apartments/${apartment.slug.current}`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: apartment.location,
+        },
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "USD", // Adjust currency if needed
+          price: apartment.rental.price,
+          availability: apartment.rental.availableDate
+            ? new Date(apartment.rental.availableDate) > new Date()
+              ? 'InStock'
+              : 'OutOfStock'
+            : 'InStock',
+          validFrom: apartment.rental.availableDate,
+        },
+        numberOfRooms: apartment.specifications.bedrooms,
+        floorSize: {
+          "@type": "QuantitativeValue",
+          value: apartment.specifications.squareFootage,
+          unitText: "sqft",
+        },
+      }),
+    },
   };
 }
- 
+
 
 export default async function ApartmentPage({ params }: { params: Params }) {
   const { slug } = await params;

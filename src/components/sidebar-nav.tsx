@@ -11,8 +11,6 @@ import {
   HelpCircle,
   Settings,
   ChevronRight,
-  FileText,
-  PenToolIcon as Tool,
   LayoutDashboard,
   ClipboardList,
   Clock,
@@ -20,10 +18,12 @@ import {
   MessageSquare,
   Hotel,
   ScrollText,
+  Wrench,
+  Monitor,
+  ChartNoAxesColumnIncreasingIcon,
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { IconDeviceDesktop } from "@tabler/icons-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const sidebarItems = [
@@ -37,11 +37,12 @@ const sidebarItems = [
       },
       {
         title: "Reservation",
-        icon: IconDeviceDesktop,
+        icon: Monitor,
         href: "/reservation",
         subItems: [
-          { title: "New Reservation", href: "/reservation/new" },
-          { title: "View Reservations", href: "/reservation/view" },
+          { title: "Front Desk", href: "/reservation/front-desk" },
+          { title: "Group Reservations", href: "/reservation/group-reservation" },
+          { title: "Web Reservations", href: "/reservation/web-reservation" },
         ],
       },
       {
@@ -81,7 +82,7 @@ const sidebarItems = [
     items: [
       {
         title: "Report",
-        icon: FileText,
+        icon: ChartNoAxesColumnIncreasingIcon,
         href: "/report",
         subItems:[
           { title: "Overview", href: "/report" },
@@ -91,7 +92,7 @@ const sidebarItems = [
       },
       {
         title: "Maintenance",
-        icon: Tool,
+        icon: Wrench,
         href: "/maintenance",
       },
     ],

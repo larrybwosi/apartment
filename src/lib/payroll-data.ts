@@ -1,8 +1,10 @@
+import { staff } from "./staff-data";
+
 export const payroll = [
   {
     id: "80123010",
     name: "Fateh Md",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[0].avatar,
     role: "General Manager",
     dateTime: "02 July 2024, 10:00",
     workingHours: "150 Hours 20 Min",
@@ -13,7 +15,7 @@ export const payroll = [
   {
     id: "80123009",
     name: "Bessie Cooper",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[1].avatar,
     role: "Cleaner",
     dateTime: null,
     workingHours: "220 Hours 12 Min",
@@ -24,7 +26,7 @@ export const payroll = [
   {
     id: "80123008",
     name: "Mark Anderson",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[2].avatar,
     role: "Designer",
     dateTime: null,
     workingHours: "320 Hours 20 Min",
@@ -35,7 +37,7 @@ export const payroll = [
   {
     id: "80123007",
     name: "Sashi Tandikar",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[3].avatar,
     role: "Marketer",
     dateTime: "01 July 2024, 14:00",
     workingHours: "180 Hours 50 Min",

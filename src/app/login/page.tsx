@@ -25,8 +25,8 @@ export default async function LoginPage() {
       <div className="relative hidden bg-muted lg:block">
         <Image
           src="https://cdn.sanity.io/images/k1f8kx4i/production/b545fee9240131b6d4236daa5231a258afd0280a-736x1104.png?fm=webp"
-          alt="Image"
-          width={1280}
+          alt="Image" 
+          width={600}
           height={1280}
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5] "
         />

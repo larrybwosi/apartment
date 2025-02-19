@@ -9,9 +9,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FileDown, MoreVertical, Search, Star } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { reviews } from "@/lib/reviews-data"
 import { ReviewReplyDialog } from "./review-reply-dialog"
+import Pagination from "./pagination"
 
 export function GuestReviews() {
   const [selectedStaff, setSelectedStaff] = useState<string>("all")
@@ -209,29 +209,7 @@ export function GuestReviews() {
             </Table>
           </div>
 
-          <div className="flex items-center justify-between py-4">
-            <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-              Previous
-            </Button>
-            <div className="flex items-center gap-2">
-              {[1, 2, "...", 12, 13, 14].map((page, i) => (
-                <Button
-                  key={i}
-                  variant="outline"
-                  size="icon"
-                  className={cn(
-                    "w-8 h-8",
-                    page === 1 ? "bg-emerald-600 text-white hover:bg-emerald-700" : "bg-white hover:bg-gray-50",
-                  )}
-                >
-                  {page}
-                </Button>
-              ))}
-            </div>
-            <Button variant="outline" className="w-[100px] bg-white hover:bg-gray-50">
-              Next
-            </Button>
-          </div>
+          <Pagination totalPages={15}/>
         </div>
       </div>
 

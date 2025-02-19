@@ -1,8 +1,10 @@
+import { staff } from "./staff-data";
+
 export const attendance = [
   {
     id: "80123098",
     name: "Anderson Dark",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[1].avatar,
     position: "General Manager",
     date: "24 July 2024",
     checkIn: "10:00 AM",
@@ -13,7 +15,7 @@ export const attendance = [
   {
     id: "80123066",
     name: "White Elefant",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[2].avatar,
     position: "Room Cleaner",
     date: "22 July 2024",
     checkIn: "02:00 PM",
@@ -24,7 +26,7 @@ export const attendance = [
   {
     id: "80123056",
     name: "Mark Ganson",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[4].avatar,
     position: "Front Desk",
     date: "21 March 2022",
     checkIn: "02:00 PM",
@@ -35,7 +37,7 @@ export const attendance = [
   {
     id: "80123041",
     name: "Sugar Soil",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: staff[5].avatar,
     position: "Designer",
     date: "20 July 2024",
     checkIn: "03:00 PM",

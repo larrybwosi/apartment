@@ -6,23 +6,52 @@ import { getApartments, getCategories } from "@/app/actions/apartments";
 import { Metadata } from "next";
 import { ApartmentGrid } from "@/components/apartment/apartment-grid";
 
-export const metadata: Metadata ={
-  title:'Cheap City | Apartments',
-  description:'Find the best apartment with your prefrences',
-  keywords:['apartments', 'more apartments'],
+
+export const metadata: Metadata = {
+  title: 'Find Your Perfect Apartment | Search, Filter & View Listings',
+  description: 'Explore a wide range of apartments for rent or sale. Filter by price, size, amenities, and more to find the ideal home.',
+  keywords: ['apartments for rent', 'apartments for sale', 'find apartments', 'apartment listings', 'apartment search', 'real estate', 'apartments near me'],
+  authors: [{ name: 'Larry Bwosi', url: 'https://www.yourwebsite.com' }],
+  openGraph: {
+    title: 'Find Your Perfect Apartment | Search, Filter & View Listings',
+    description: 'Explore a wide range of apartments for rent or sale. Filter by price, size, amenities, and more to find the ideal home.',
+    images: [{ url: 'URL_to_image_for_preview' }], // Add an image URL for social preview
+    url: 'https://cheapcity.vercel.app/apartments', // URL of the apartments page
+    type: 'website',
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cheap City | Apartments',
-    description: 'Find the best apartment with your prefrences',
-    images: [
-      {
-        url: 'https://www.cheapcity.com/images/cheapcity.png',
-        width: 800,
-        height: 600,
+    title: 'Find Your Perfect Apartment | Search, Filter & View Listings',
+    description: 'Explore a wide range of apartments for rent or sale. Filter by price, size, amenities, and more to find the ideal home.',
+    images: ['URL_to_image_for_preview'], // Add an image URL for Twitter preview
+  },
+  other: {
+    // Schema.org structured data
+    schemaOrg: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: 'Find Your Perfect Apartment | Search, Filter & View Listings',
+      description: 'Explore a wide range of apartments for rent or sale. Filter by price, size, amenities, and more to find the ideal home.',
+      url: 'https://www.yourwebsite.com/apartments',
+      mainEntityOfPage: {
+        "@type": "ApartmentComplex",
+        name: 'Apartment Listings',
+        description: 'Browse apartments for rent or sale with various sizes, prices, and amenities.',
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "KSH", // Adjust currency if needed
+          priceRange: '500-5000', // Adjust price range according to your listings
+          eligibleRegion: {
+            "@type": "Place",
+            name: 'City or Region', // Replace with relevant city or region
+          },
+          availability: 'InStock',
+          validFrom: '2025-01-01', // Adjust to match your available listing dates
+        },
       },
-    ]
-  }
-}
+    }),
+  },
+};
 
 type SearchParams = Promise<{
   query?: string;

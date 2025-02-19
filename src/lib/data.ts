@@ -14,7 +14,7 @@ export const guests: Guest[] = [
   {
     id: "#102112",
     name: "Raiders Kae",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/2787341/pexels-photo-2787341.jpeg?auto=compress&cs=tinysrgb&w=200&h=200",
     source: "Font Desks",
     date: "20/12/2024",
     email: "debra.h@gmail.com",
@@ -25,7 +25,7 @@ export const guests: Guest[] = [
   {
     id: "#102111",
     name: "Jassy Mac",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: 'https://images.pexels.com/photos/2169434/pexels-photo-2169434.jpeg?auto=compress&cs=tinysrgb&w=200&h=200",',
     source: "Web Reservation",
     date: "19/12/2024",
     email: "mark@gmail.com",
@@ -36,7 +36,7 @@ export const guests: Guest[] = [
   {
     id: "#102110",
     name: "Macculam Brad",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/2491933/pexels-photo-2491933.jpeg?auto=compress&cs=tinysrgb&w=200&h=200",
     source: "Font Desks",
     date: "18/12/2024",
     email: "brad@gmail.com",
@@ -47,7 +47,7 @@ export const guests: Guest[] = [
   {
     id: "#102109",
     name: "Jhoney Cark",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200&h=200",
     source: "Group Reservation",
     date: "17/12/2024",
     email: "cark@gmail.com",
@@ -58,7 +58,7 @@ export const guests: Guest[] = [
   {
     id: "#102108",
     name: "Jhon Brak",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200&h=200",
     source: "Font Desks",
     date: "16/12/2024",
     email: "jhon@gmail.com",
