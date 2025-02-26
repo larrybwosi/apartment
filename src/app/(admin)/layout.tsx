@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import AdminLayout from "@/components/admin-layout"
 import { headers } from "next/headers";
 
-const inter = Archivo({ weight: "400" , subsets: ["latin"] })
+const inter = Archivo({ weight: "500" , subsets: ["latin"] })
 
 function getLastPathSegment(path: string): string {
   // Remove trailing slashes (if any) and split the path into segments

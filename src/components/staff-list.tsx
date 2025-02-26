@@ -26,13 +26,33 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+interface Staff {
+  id: string
+  name: string
+  avatar: string
+  position: string
+  hireDate: string
+  agreement: string
+  hireType: string
+  salaryRate: number | string
+  status: string
+  email?: string
+  phone?: string
+  department?: string
+  manager?: string
+  payFrequency?: string
+  lastReview?: string
+  nextReview?: string
+}
+
+
 export function StaffList() {
   const [selectedPosition, setSelectedPosition] = useState<string>("all")
   const [selectedStatus, setSelectedStatus] = useState<string>("all")
-  const [selectedStaff, setSelectedStaff] = useState<Staff>(null)
+  const [selectedStaff, setSelectedStaff] = useState<Staff>()
   const [showModal, setShowModal] = useState(false)
 
-  const handleViewDetails = (member) => {
+  const handleViewDetails = (member: Staff) => {
     setSelectedStaff(member)
     setShowModal(true)
   }

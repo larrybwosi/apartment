@@ -1,6 +1,6 @@
 import { MaintenanceList } from "@/components/maintenance-list"
 import { Button } from "@/components/ui/button"
-import { Plus, MoreHorizontal, PenToolIcon as Tool } from "lucide-react"
+import { Plus, MoreHorizontal, Wrench } from "lucide-react"
 
 export default function MaintenancePage() {
   return (
@@ -8,7 +8,7 @@ export default function MaintenancePage() {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           <div className="p-2 bg-gray-100 rounded-lg">
-            <Tool className="w-8 h-8 text-gray-600" />
+            <Wrench className="w-8 h-8 text-gray-600" />
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Maintenance</h1>

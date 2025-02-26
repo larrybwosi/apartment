@@ -10,7 +10,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { FileDown, MoreVertical, Search, Star } from "lucide-react"
 import { reviews } from "@/lib/reviews-data"
-import { ReviewReplyDialog } from "./review-reply-dialog"
+import ReviewReplyDialog from "./review-reply-dialog"
 import Pagination from "./pagination"
 
 export function GuestReviews() {

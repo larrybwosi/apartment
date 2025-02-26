@@ -60,7 +60,7 @@ function Pagination({ totalPages }: PaginationProps) {
     <div className="flex items-center justify-between py-4">
       <Button
         variant="outline"
-        className="w-[100px] bg-white hover:bg-gray-50"
+        className="w-[100px] bg-white hover:bg-gray-50 cursor-pointer"
         onClick={() => handlePageChange(Math.max(1, Number(currentPage) - 1))}
         disabled={Number(currentPage) === 1}
       >
@@ -73,7 +73,7 @@ function Pagination({ totalPages }: PaginationProps) {
             variant="outline"
             size="icon"
             className={cn(
-              "w-8 h-8",
+              "w-8 h-8 cursor-pointer",
               page === Number(currentPage) ? "bg-emerald-600 text-white hover:bg-emerald-700" : "bg-white hover:bg-gray-50",
             )}
             onClick={() => handlePageChange(page)}
@@ -85,7 +85,7 @@ function Pagination({ totalPages }: PaginationProps) {
       </div>
       <Button
         variant="outline"
-        className="w-[100px] bg-white hover:bg-gray-50"
+        className="w-[100px] bg-white hover:bg-gray-50 cursor-pointer"
         onClick={() => handlePageChange(Math.min(totalPages, Number(currentPage) + 1))}
         disabled={Number(currentPage) === totalPages}
       >

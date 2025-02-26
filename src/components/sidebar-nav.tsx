@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
   ChevronDown,
@@ -38,7 +38,7 @@ const sidebarItems = [
       {
         title: "Reservation",
         icon: Monitor,
-        href: "/reservation",
+        href: "/reservation/front-desk",
         subItems: [
           { title: "Front Desk", href: "/reservation/front-desk" },
           { title: "Group Reservations", href: "/reservation/group-reservation" },
@@ -146,6 +146,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
 export function SidebarNav({ className, isCollapsed, ...props }: SidebarNavProps) {
   const pathname = usePathname()
   const [openItems, setOpenItems] = useState<string[]>(["Manage Staff"]) // Default open for current page
+  const router = useRouter()
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -233,9 +234,9 @@ export function SidebarNav({ className, isCollapsed, ...props }: SidebarNavProps
                           : "text-muted-foreground hover:bg-muted hover:text-foreground",
                         isCollapsed && "justify-center",
                       )}
-                      onClick={() => hasSubItems && toggleItem(item.title)}
+                      onClick={() => router.push(item.href)}
                     >
-                      <item.icon className="w-4 h-4" />
+                      <item.icon className="w-4 h-4" onClick={() => hasSubItems && toggleItem(item.title)} />
                       {!isCollapsed && (
                         <>
                           <span className="flex-1 text-left">{item.title}</span>
@@ -269,7 +270,10 @@ export function SidebarNav({ className, isCollapsed, ...props }: SidebarNavProps
                                 {RouteIcon && <RouteIcon className="w-4 h-4" />}
                                 {subItem.title}
                                 {isSubItemActive && (
-                                  <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 h-6 w-2 bg-emerald-600 rounded-l-full" />
+                                  <>
+                                    <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 h-6 w-2 bg-emerald-600 rounded-l-full" />
+                                    {/* <CornerDownRight className="w-4 h-4 text-muted-foreground mr-auto" /> */}
+                                  </>
                                 )}
                               </Link>
                             )
